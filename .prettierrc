@@ -1,0 +1,6 @@
+{
+	"singleQuote": true,
+	"trailingComma": "es5",
+	"importOrderSortSpecifiers": true,
+	"importOrderSeparation": true
+}

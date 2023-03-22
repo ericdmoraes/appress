@@ -1,0 +1,12 @@
+{
+	"extends": "@tsconfig/react-native/tsconfig.json",
+	"compilerOptions": {
+		"target": "ES2020",
+		"experimentalDecorators": true,
+		"module": "CommonJS",
+		"noImplicitAny": true,
+		"types": ["node", "styled-components-react-native"]
+	},
+	"include": ["src"], // which files to compile
+	"exclude": ["node_modules"] // which files to skip
+}

@@ -1,0 +1,30 @@
+export default {
+	common: {
+		lightFontColor: '#EEE',
+		darkFontColor: '#111',
+		redDark: '#BF3B44',
+		redMid: '#F3BABD',
+		redLight: '#F4E6E7',
+		greenDark: '#639339',
+		greenMid: '#CBE4B4',
+		greenLight: '#E5F0DB',
+	},
+	product: {
+		backColor: '#0f0e0e',
+		primary: '#1A120B',
+		secondary: '#3C2A21',
+		tertiary: '#D5CEA3',
+		quaternary: '#E5E5CB',
+	},
+	gray: {
+		7: '#FAFAFA',
+		6: '#DDDEDF',
+		5: '#DDDEDF',
+		4: '#B9BBBC',
+		3: '#5C6265',
+		2: '#333638',
+		1: '#1B1D1E',
+	},
+	danger: '#E25858',
+	white: '#FFFFFF',
+};
