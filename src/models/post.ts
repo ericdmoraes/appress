@@ -10,4 +10,5 @@ export default class Post extends Model {
 	@text('description') description!: string;
 	@text('htmlDescription') htmlDescription!: string;
 	@field('category_id') categoryId!: number;
+	@field('author_id') authorId!: number;
 }

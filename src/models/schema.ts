@@ -1,7 +1,7 @@
 import { appSchema, tableSchema } from '@nozbe/watermelondb';
 
 export default appSchema({
-	version: 4,
+	version: 5,
 	tables: [
 		tableSchema({
 			name: 'posts',
@@ -12,6 +12,7 @@ export default appSchema({
 				{ name: 'description', type: 'string' },
 				{ name: 'htmlDescription', type: 'string' },
 				{ name: 'category_id', type: 'number' },
+				{ name: 'author_id', type: 'number' },
 			],
 		}),
 		tableSchema({

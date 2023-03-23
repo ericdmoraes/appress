@@ -23,6 +23,7 @@ export const serviceGetPosts = async () => {
 					newPost.description = formatedPost.description;
 					newPost.htmlDescription = formatedPost.htmlDescription;
 					newPost.categoryId = formatedPost.categories[0];
+					newPost.authorId = formatedPost.authorId;
 				})
 			)
 		);

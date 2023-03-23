@@ -112,4 +112,5 @@ export type formatedPost = {
 	description: string;
 	htmlDescription: string;
 	categories: number[];
+	authorId: number;
 };

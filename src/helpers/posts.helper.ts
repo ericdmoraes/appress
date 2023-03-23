@@ -14,6 +14,7 @@ export const formatPostObject = async (
 				id: index,
 				pictureUrl: await handleGetImage(picUrl),
 				categories: post.categories,
+				authorId: post.author,
 			};
 		})
 	);
