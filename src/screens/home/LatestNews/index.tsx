@@ -16,7 +16,7 @@ const LatestNews = ({
 			<TitleLabel>Últimas Notícias</TitleLabel>
 			<FlatList
 				horizontal={true}
-				data={items.slice(1, items.length)}
+				data={items.slice(3, items.length)}
 				renderItem={({ item }) => (
 					<ItemCard handleNavigationPost={navigateTo} item={item} />
 				)}

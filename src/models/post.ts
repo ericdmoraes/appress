@@ -11,4 +11,6 @@ export default class Post extends Model {
 	@text('htmlDescription') htmlDescription!: string;
 	@field('category_id') categoryId!: number;
 	@field('author_id') authorId!: number;
+	@text('publicated_at') publicatedAt!: string;
+	@text('updated_post_at') updatedPostAt!: string;
 }

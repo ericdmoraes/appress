@@ -1,6 +1,6 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { database } from '../../../models';
 import Category from '../../../models/category';
 import {
@@ -31,6 +31,15 @@ const Header = () => {
 			<Container>
 				<TouchableOpacity onPress={() => clearCategory()} key={0}>
 					<ItemMenu isSelected={!isSelected}>Home</ItemMenu>
+					{!isSelected && (
+						<View
+							style={{
+								width: '100%',
+								height: 1,
+								backgroundColor: 'black',
+							}}
+						/>
+					)}
 				</TouchableOpacity>
 
 				{categories?.map((cat, index) => (
@@ -43,6 +52,15 @@ const Header = () => {
 						>
 							{cat.name}
 						</ItemMenu>
+						{wordpressId === cat.wordpressId && isSelected && (
+							<View
+								style={{
+									width: '100%',
+									height: 1,
+									backgroundColor: 'black',
+								}}
+							/>
+						)}
 					</TouchableOpacity>
 				))}
 			</Container>

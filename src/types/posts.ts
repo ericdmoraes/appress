@@ -113,4 +113,6 @@ export type formatedPost = {
 	htmlDescription: string;
 	categories: number[];
 	authorId: number;
+	publicatedAt: string;
+	updatedPostAt: string;
 };

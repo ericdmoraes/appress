@@ -39,8 +39,8 @@ const Home = ({ navigation }: HomeScreenProp) => {
 		<Container>
 			{posts.length > 0 && (
 				<>
-					<HighlightPositon navigateTo={handleNavigationPost} item={posts[0]} />
-					{posts.length > 1 && (
+					<HighlightPositon item={posts.slice(0, 3)} />
+					{posts.length > 3 && (
 						<>
 							<Separator />
 							<LatestNews navigateTo={handleNavigationPost} items={posts} />

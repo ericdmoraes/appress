@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.ScrollView`
 	flex: 1;
-	background-color: ${({ theme }) => theme.gray[7]};
+	background-color: ${({ theme }) => theme.white};
 `;
 
 export const TitleLabel = styled.Text`

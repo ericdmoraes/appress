@@ -13,6 +13,8 @@ export default appSchema({
 				{ name: 'htmlDescription', type: 'string' },
 				{ name: 'category_id', type: 'number' },
 				{ name: 'author_id', type: 'number' },
+				{ name: 'publicated_at', type: 'string' },
+				{ name: 'updated_post_at', type: 'string' },
 			],
 		}),
 		tableSchema({

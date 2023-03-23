@@ -1,17 +1,32 @@
-//import liraries
-import { Q } from '@nozbe/watermelondb';
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+import { format } from 'date-fns';
+import { Q } from '@nozbe/watermelondb';
 
 import { database } from '../../../models';
 import Category from '../../../models/category';
 import Post from '../../../models/post';
 import User from '../../../models/user';
 
+import {
+	AuthorLabel,
+	CategoryContainer,
+	CategoryLabel,
+	Container,
+	FadedLabel,
+	PicContainer,
+	TitleContainer,
+	TitleLabel,
+} from './styles';
+
 const HighlightCard = ({ postId }: { postId: string }) => {
 	const [post, setPost] = useState<Post>();
 	const [category, setCategory] = useState<Category>();
 	const [author, setAuthor] = useState<User>();
+
+	const navigation = useNavigation<any>();
 
 	useEffect(() => {
 		getPostHighlight();
@@ -38,17 +53,35 @@ const HighlightCard = ({ postId }: { postId: string }) => {
 		setPost(postCollection[0]);
 	};
 
+	const handleNavigation = (wordpressId: number) => {
+		navigation.navigate('Post', { postId: wordpressId });
+	};
+
 	return (
-		<View>
+		<Container>
 			{post && category && author && (
 				<>
-					<Text>{category.name}</Text>
-					<Text>{post.title}</Text>
-					<Text>{post.pictureUrl}</Text>
-					<Text>Por: {author.name}</Text>
+					<CategoryContainer>
+						<CategoryLabel>{category.name.toUpperCase()}</CategoryLabel>
+					</CategoryContainer>
+					<TouchableOpacity
+						activeOpacity={0.9}
+						onPress={() => handleNavigation(post.wordpressId)}
+					>
+						<TitleContainer>
+							<TitleLabel numberOfLines={2}>{post.title}</TitleLabel>
+						</TitleContainer>
+						<PicContainer source={{ uri: post.pictureUrl }} />
+						<FadedLabel>
+							Por <AuthorLabel>{author.name}</AuthorLabel>
+						</FadedLabel>
+						<FadedLabel>
+							{format(new Date(post.publicatedAt), 'MMM dd, yyyy')}
+						</FadedLabel>
+					</TouchableOpacity>
 				</>
 			)}
-		</View>
+		</Container>
 	);
 };
 
