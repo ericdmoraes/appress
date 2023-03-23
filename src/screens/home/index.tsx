@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { HomeScreenProp } from '..';
 
-import { Container, Separator, TitleLabel } from './styles';
+import { Container, Separator } from './styles';
 
-import { database } from '../../models';
 import Post from '../../models/post';
+import { database } from '../../models';
 
-import HighlightPost from './HighlighPost';
+import HighlightPositon from './HighlighPost';
 import LatestNews from './LatestNews';
+
 import { useCategory } from '../../store/useCategory';
 
 const Home = ({ navigation }: HomeScreenProp) => {
@@ -38,7 +39,7 @@ const Home = ({ navigation }: HomeScreenProp) => {
 		<Container>
 			{posts.length > 0 && (
 				<>
-					<HighlightPost navigateTo={handleNavigationPost} item={posts[0]} />
+					<HighlightPositon navigateTo={handleNavigationPost} item={posts[0]} />
 					{posts.length > 1 && (
 						<>
 							<Separator />

@@ -8,7 +8,7 @@ const allCategories = process.env.CATEGORIES;
 export const serviceGetCategories = async () => {
 	const response = await fetch(`${apiUrl}/${allCategories}`);
 	const categories: [] = await response.json();
-	const formatedCategories = await formatCategoriesObject(categories);
+	const formatedCategories = formatCategoriesObject(categories);
 
 	const categoriesCollection = database.get<Category>('categories');
 	await database.write(async () => {

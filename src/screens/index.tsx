@@ -14,6 +14,7 @@ import Post from './post/';
 import { serviceGetPosts } from '../services/posts.service';
 import { serviceGetCategories } from '../services/categories.service';
 import Header from './_components/Header';
+import { serviceGetUsers } from '../services/users.service';
 
 type RootStackParamList = {
 	Home: undefined;
@@ -32,10 +33,11 @@ export default function App() {
 		async function init() {
 			await serviceGetPosts();
 			await serviceGetCategories();
+			await serviceGetUsers();
 			setLoading(false);
 		}
 		init();
-	});
+	}, []);
 
 	return (
 		<ThemeProvider theme={theme}>

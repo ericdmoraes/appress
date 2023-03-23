@@ -3,9 +3,8 @@ import React from 'react';
 
 import { SectionContainer, TitleLabel } from './styles';
 
-import ItemCard from '../../_components/ItemCard';
-
 import Post from '../../../models/post';
+import HighlightCard from '../../_components/HighlightCard';
 
 const HighlightPost = ({
 	item,
@@ -16,8 +15,7 @@ const HighlightPost = ({
 }) => {
 	return (
 		<SectionContainer>
-			<TitleLabel>Destaque</TitleLabel>
-			<ItemCard handleNavigationPost={navigateTo} item={item} />
+			<HighlightCard postId={item.id} />
 		</SectionContainer>
 	);
 };
