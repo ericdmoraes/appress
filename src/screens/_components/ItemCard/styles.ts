@@ -35,3 +35,10 @@ export const ItemName = styled.Text`
 	font-weight: thin;
 	color: #fff;
 `;
+
+export const CategoryName = styled.Text`
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 30px;
+	color: #fff;
+`;

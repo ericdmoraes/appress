@@ -1,4 +1,5 @@
 import react, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import {
 	createNativeStackNavigator,
@@ -12,7 +13,7 @@ import Home from './home/';
 import Post from './post/';
 import { serviceGetPosts } from '../services/posts.service';
 import { serviceGetCategories } from '../services/categories.service';
-import ModelPost from '../models/post';
+import Header from './_components/Header';
 
 type RootStackParamList = {
 	Home: undefined;
@@ -40,8 +41,17 @@ export default function App() {
 		<ThemeProvider theme={theme}>
 			{!isLoading && (
 				<NavigationContainer>
-					<Stack.Navigator initialRouteName="Home">
-						<Stack.Screen name="Home" component={Home} />
+					<Stack.Navigator
+						screenOptions={{ statusBarColor: 'white', statusBarStyle: 'dark' }}
+						initialRouteName="Home"
+					>
+						<Stack.Screen
+							name="Home"
+							options={{
+								header: () => <Header />,
+							}}
+							component={Home}
+						/>
 						<Stack.Screen name="Post" component={Post} />
 					</Stack.Navigator>
 				</NavigationContainer>

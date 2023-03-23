@@ -9,20 +9,25 @@ import Post from '../../models/post';
 
 import HighlightPost from './HighlighPost';
 import LatestNews from './LatestNews';
-import CategoriesMenu from '../_components/CategoriesMenu';
+import { useCategory } from '../../store/useCategory';
 
 const Home = ({ navigation }: HomeScreenProp) => {
-	const [isLoading, setLoading] = useState(true);
 	const [posts, setPosts] = useState<Post[]>([]);
+
+	const { wordpressId, isSelected } = useCategory();
 
 	useEffect(() => {
 		handleLoadDataFromDb();
-	}, []);
+	}, [wordpressId, isSelected]);
 
 	const handleLoadDataFromDb = async () => {
-		setLoading(true);
-		setPosts(await database.get<Post>('posts').query().fetch());
-		setLoading(false);
+		let postResult: Post[] = await database.get<Post>('posts').query().fetch();
+
+		if (isSelected) {
+			postResult = postResult.filter((post) => post.categoryId === wordpressId);
+		}
+
+		setPosts(postResult);
 	};
 
 	const handleNavigationPost = (itemId: number) => {
@@ -31,14 +36,15 @@ const Home = ({ navigation }: HomeScreenProp) => {
 
 	return (
 		<Container>
-			{isLoading === true ? (
-				<TitleLabel>Carregando...</TitleLabel>
-			) : (
+			{posts.length > 0 && (
 				<>
-					<CategoriesMenu />
 					<HighlightPost navigateTo={handleNavigationPost} item={posts[0]} />
-					<Separator />
-					<LatestNews navigateTo={handleNavigationPost} items={posts} />
+					{posts.length > 1 && (
+						<>
+							<Separator />
+							<LatestNews navigateTo={handleNavigationPost} items={posts} />
+						</>
+					)}
 				</>
 			)}
 		</Container>
