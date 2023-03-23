@@ -25,5 +25,12 @@ export default appSchema({
 				{ name: 'wordpress_id', type: 'number' },
 			],
 		}),
+		tableSchema({
+			name: 'users',
+			columns: [
+				{ name: 'name', type: 'string' },
+				{ name: 'wordpress_id', type: 'number' },
+			],
+		}),
 	],
 });
