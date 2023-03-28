@@ -1,8 +1,8 @@
 import react, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import {
 	createNativeStackNavigator,
+	NativeStackNavigationProp,
 	NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,10 +18,14 @@ import { serviceGetUsers } from '../services/users.service';
 
 type RootStackParamList = {
 	Home: undefined;
-	Post: { postId: number };
+	Post: { wordpressId: number };
 };
 
-export type HomeScreenProp = NativeStackScreenProps<RootStackParamList, 'Home'>;
+// export type HomeScreenProp = NativeStackScreenProps<RootStackParamList, 'Home'>;
+export type HomeScreenNavigationProp = NativeStackNavigationProp<
+	RootStackParamList,
+	'Home'
+>;
 export type PostScreenProp = NativeStackScreenProps<RootStackParamList, 'Post'>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

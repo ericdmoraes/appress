@@ -20,13 +20,14 @@ import {
 	TitleContainer,
 	TitleLabel,
 } from './styles';
+import { HomeScreenNavigationProp } from '../..';
 
 const HighlightCard = ({ postId }: { postId: string }) => {
 	const [post, setPost] = useState<Post>();
 	const [category, setCategory] = useState<Category>();
 	const [author, setAuthor] = useState<User>();
 
-	const navigation = useNavigation<any>();
+	const navigation = useNavigation<HomeScreenNavigationProp>();
 
 	useEffect(() => {
 		getPostHighlight();
@@ -54,7 +55,7 @@ const HighlightCard = ({ postId }: { postId: string }) => {
 	};
 
 	const handleNavigation = (wordpressId: number) => {
-		navigation.navigate('Post', { postId: wordpressId });
+		navigation.navigate('Post', { wordpressId });
 	};
 
 	return (

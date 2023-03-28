@@ -1,8 +1,6 @@
 //import liraries
 import React, { useEffect, useState } from 'react';
-import { HomeScreenProp } from '..';
-
-import { Container, Separator } from './styles';
+import { Container } from './styles';
 
 import Post from '../../models/post';
 import { database } from '../../models';
@@ -11,8 +9,9 @@ import HighlightPositon from './HighlighPost';
 import LatestNews from './LatestNews';
 
 import { useCategory } from '../../store/useCategory';
+import { FlatList } from 'react-native';
 
-const Home = ({ navigation }: HomeScreenProp) => {
+const Home = () => {
 	const [posts, setPosts] = useState<Post[]>([]);
 
 	const { wordpressId, isSelected } = useCategory();
@@ -31,23 +30,19 @@ const Home = ({ navigation }: HomeScreenProp) => {
 		setPosts(postResult);
 	};
 
-	const handleNavigationPost = (itemId: number) => {
-		navigation.navigate('Post', { postId: itemId });
-	};
-
 	return (
 		<Container>
-			{posts.length > 0 && (
-				<>
+			<FlatList
+				data={posts.slice(3, posts.length)}
+				ListHeaderComponent={() => (
 					<HighlightPositon item={posts.slice(0, 3)} />
-					{posts.length > 3 && (
-						<>
-							<Separator />
-							<LatestNews navigateTo={handleNavigationPost} items={posts} />
-						</>
-					)}
-				</>
-			)}
+				)}
+				ListFooterComponent={() => (
+					<LatestNews items={posts.slice(3, posts.length)} />
+				)}
+				renderItem={({ item }) => <></>}
+				keyExtractor={(item) => item.id}
+			/>
 		</Container>
 	);
 };

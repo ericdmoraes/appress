@@ -1,27 +1,25 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import Post from '../../../models/post';
-import ItemCard from '../../_components/ItemCard';
+import ListCard from '../../_components/ListCard';
 import { SectionContainer, TitleLabel } from './styles';
 
-const LatestNews = ({
-	items,
-	navigateTo,
-}: {
-	items: Post[];
-	navigateTo: (postId: number) => void;
-}) => {
+const LatestNews = ({ items }: { items: Post[] }) => {
 	return (
 		<SectionContainer>
-			<TitleLabel>Últimas Notícias</TitleLabel>
-			<FlatList
-				horizontal={true}
-				data={items.slice(3, items.length)}
-				renderItem={({ item }) => (
-					<ItemCard handleNavigationPost={navigateTo} item={item} />
-				)}
-				keyExtractor={(item) => item.id.toString()}
-			/>
+			{items.length > 0 ? (
+				<>
+					<TitleLabel>Mais Recentes</TitleLabel>
+					<FlatList
+						contentContainerStyle={{ width: '100%' }}
+						data={items}
+						renderItem={({ item }) => <ListCard item={item} />}
+						keyExtractor={(item) => item.id.toString()}
+					/>
+				</>
+			) : (
+				<Text>Sem posts mais recentes</Text>
+			)}
 		</SectionContainer>
 	);
 };

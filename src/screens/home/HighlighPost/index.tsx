@@ -44,7 +44,8 @@ const HighlightPost = ({ item: posts }: { item: Post[] }) => {
 							hitSlop={30}
 							style={{
 								width: `${100 / posts.length - posts.length}%`,
-								height: 2,
+								height: 2.5,
+								borderRadius: 10,
 								backgroundColor: position === index ? 'black' : 'silver',
 							}}
 						/>
