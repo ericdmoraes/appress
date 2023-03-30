@@ -17,21 +17,23 @@ const HighlightPost = ({ item: posts }: { item: Post[] }) => {
 
 	return (
 		<SectionContainer>
-			<PagerView
-				ref={pagerViewRef}
-				onPageSelected={({ nativeEvent }) => {
-					setPostion(nativeEvent.position);
-				}}
-				pageMargin={10}
-				style={{ height: 450 }}
-				initialPage={0}
-			>
-				{posts.map((post, index) => (
-					<View key={index + 1}>
-						<HighlightCard postId={post.id} />
-					</View>
-				))}
-			</PagerView>
+			{posts.length > 0 && (
+				<PagerView
+					ref={pagerViewRef}
+					onPageSelected={({ nativeEvent }) => {
+						setPostion(nativeEvent.position);
+					}}
+					pageMargin={10}
+					style={{ height: 450 }}
+					initialPage={0}
+				>
+					{posts.map((post, index) => (
+						<View key={index + 1}>
+							<HighlightCard postId={post.id} />
+						</View>
+					))}
+				</PagerView>
+			)}
 
 			<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 				{posts.length > 1 &&

@@ -7,12 +7,14 @@ export const formatPostObject = async (
 		posts.map(async (post, index) => {
 			const picUrl: string = post._links['wp:featuredmedia'][0].href;
 
+			const picData = await handleGetImage(picUrl);
 			return {
 				title: post.title.rendered,
 				description: post.excerpt.rendered.replace(/<\/?[^>]+>/gi, ''),
 				htmlDescription: post.content.rendered,
 				id: index,
-				pictureUrl: await handleGetImage(picUrl),
+				pictureUrl: picData.url,
+				pictureCaption: picData.description.replace(/<\/?[^>]+>/gi, ''),
 				categories: post.categories,
 				authorId: post.author,
 				publicatedAt: post.date,
@@ -24,8 +26,13 @@ export const formatPostObject = async (
 	return formatedPosts;
 };
 
-const handleGetImage = async (picUrl: string): Promise<string> => {
+const handleGetImage = async (
+	picUrl: string
+): Promise<{ url: string; description: string }> => {
 	const response = await fetch(picUrl);
 	const data = await response.json();
-	return data.guid.rendered;
+	return {
+		url: data.guid.rendered,
+		description: data.caption.rendered,
+	};
 };

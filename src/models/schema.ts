@@ -15,6 +15,7 @@ export default appSchema({
 				{ name: 'author_id', type: 'number' },
 				{ name: 'publicated_at', type: 'string' },
 				{ name: 'updated_post_at', type: 'string' },
+				{ name: 'picture_caption', type: 'string' },
 			],
 		}),
 		tableSchema({

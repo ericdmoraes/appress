@@ -1,11 +1,13 @@
 import react, { useEffect, useState } from 'react';
+import NetInfo from '@react-native-community/netinfo';
+
 import { ThemeProvider } from 'styled-components/native';
 import {
 	createNativeStackNavigator,
 	NativeStackNavigationProp,
 	NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, RouteProp } from '@react-navigation/native';
 
 import theme from '../themes/theme';
 
@@ -21,12 +23,11 @@ type RootStackParamList = {
 	Post: { wordpressId: number };
 };
 
-// export type HomeScreenProp = NativeStackScreenProps<RootStackParamList, 'Home'>;
 export type HomeScreenNavigationProp = NativeStackNavigationProp<
 	RootStackParamList,
 	'Home'
 >;
-export type PostScreenProp = NativeStackScreenProps<RootStackParamList, 'Post'>;
+export type PostScreenProp = RouteProp<RootStackParamList, 'Post'>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -35,9 +36,14 @@ export default function App() {
 
 	useEffect(() => {
 		async function init() {
-			await serviceGetPosts();
-			await serviceGetCategories();
-			await serviceGetUsers();
+			const netInfo = await NetInfo.fetch();
+			if (netInfo.isConnected) {
+				await serviceGetPosts();
+				await serviceGetCategories();
+				await serviceGetUsers();
+			} else {
+				console.log('You are not connected.');
+			}
 			setLoading(false);
 		}
 		init();
@@ -58,7 +64,13 @@ export default function App() {
 							}}
 							component={Home}
 						/>
-						<Stack.Screen name="Post" component={Post} />
+						<Stack.Screen
+							name="Post"
+							options={{
+								headerTitle: '',
+							}}
+							component={Post}
+						/>
 					</Stack.Navigator>
 				</NavigationContainer>
 			)}

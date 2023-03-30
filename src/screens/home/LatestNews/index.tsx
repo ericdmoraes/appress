@@ -2,8 +2,8 @@ import React from 'react';
 import { FlatList, Text } from 'react-native';
 import Post from '../../../models/post';
 import ListCard from '../../_components/ListCard';
-import { SectionContainer, TitleLabel } from './styles';
-
+import { NoPostsContainer, SectionContainer, TitleLabel } from './styles';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const LatestNews = ({ items }: { items: Post[] }) => {
 	return (
 		<SectionContainer>
@@ -18,7 +18,10 @@ const LatestNews = ({ items }: { items: Post[] }) => {
 					/>
 				</>
 			) : (
-				<Text>Sem posts mais recentes</Text>
+				<NoPostsContainer>
+					<Icon name="newspaper-remove" size={120} color="silver" />
+					<Text>Sem mais publicações nessa categoria.</Text>
+				</NoPostsContainer>
 			)}
 		</SectionContainer>
 	);

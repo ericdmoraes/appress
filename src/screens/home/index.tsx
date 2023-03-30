@@ -9,7 +9,9 @@ import HighlightPositon from './HighlighPost';
 import LatestNews from './LatestNews';
 
 import { useCategory } from '../../store/useCategory';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
+import { Q } from '@nozbe/watermelondb';
+import Footer from '../_components/Footer';
 
 const Home = () => {
 	const [posts, setPosts] = useState<Post[]>([]);
@@ -21,7 +23,10 @@ const Home = () => {
 	}, [wordpressId, isSelected]);
 
 	const handleLoadDataFromDb = async () => {
-		let postResult: Post[] = await database.get<Post>('posts').query().fetch();
+		let postResult: Post[] = await database
+			.get<Post>('posts')
+			.query(Q.take(8))
+			.fetch();
 
 		if (isSelected) {
 			postResult = postResult.filter((post) => post.categoryId === wordpressId);
@@ -38,7 +43,10 @@ const Home = () => {
 					<HighlightPositon item={posts.slice(0, 3)} />
 				)}
 				ListFooterComponent={() => (
-					<LatestNews items={posts.slice(3, posts.length)} />
+					<>
+						<LatestNews items={posts.slice(3, posts.length)} />
+						<Footer />
+					</>
 				)}
 				renderItem={({ item }) => <></>}
 				keyExtractor={(item) => item.id}

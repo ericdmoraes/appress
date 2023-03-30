@@ -7,6 +7,7 @@ import { database } from '../../../models';
 import Category from '../../../models/category';
 import Post from '../../../models/post';
 import User from '../../../models/user';
+import CategoryNameContainer from '../CategoryNameContainer';
 import {
 	ItemContainer,
 	PicContainer,
@@ -14,8 +15,6 @@ import {
 	AuthorLabel,
 	TitleContainer,
 	TitleLabel,
-	CategoryContainer,
-	CategoryLabel,
 } from './styles';
 
 const ListCard = ({ item: post }: { item: Post }) => {
@@ -49,11 +48,7 @@ const ListCard = ({ item: post }: { item: Post }) => {
 			onPress={() => navigate('Post', { wordpressId: post.wordpressId })}
 		>
 			<PicContainer source={{ uri: post.pictureUrl }} resizeMode="cover" />
-			{category && (
-				<CategoryContainer>
-					<CategoryLabel>{category.name.toUpperCase()}</CategoryLabel>
-				</CategoryContainer>
-			)}
+			{category && <CategoryNameContainer name={category.name} />}
 			<TitleContainer>
 				<TitleLabel numberOfLines={2}>{post.title}</TitleLabel>
 			</TitleContainer>

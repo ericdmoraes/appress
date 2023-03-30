@@ -26,6 +26,7 @@ export const serviceGetPosts = async () => {
 					newPost.authorId = formatedPost.authorId;
 					newPost.publicatedAt = formatedPost.publicatedAt;
 					newPost.updatedPostAt = formatedPost.updatedPostAt;
+					newPost.pictureCaption = formatedPost.pictureCaption;
 				})
 			)
 		);

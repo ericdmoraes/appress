@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 export const SectionContainer = styled.View`
-	padding: 15px;
+	padding: 0px 15px 0px 15px;
 `;
 
 export const TitleLabel = styled.Text`

@@ -12,8 +12,6 @@ import User from '../../../models/user';
 
 import {
 	AuthorLabel,
-	CategoryContainer,
-	CategoryLabel,
 	Container,
 	FadedLabel,
 	PicContainer,
@@ -21,6 +19,7 @@ import {
 	TitleLabel,
 } from './styles';
 import { HomeScreenNavigationProp } from '../..';
+import CategoryNameContainer from '../CategoryNameContainer';
 
 const HighlightCard = ({ postId }: { postId: string }) => {
 	const [post, setPost] = useState<Post>();
@@ -62,9 +61,7 @@ const HighlightCard = ({ postId }: { postId: string }) => {
 		<Container>
 			{post && category && author && (
 				<>
-					<CategoryContainer>
-						<CategoryLabel>{category.name.toUpperCase()}</CategoryLabel>
-					</CategoryContainer>
+					<CategoryNameContainer name={category.name} />
 					<TouchableOpacity
 						activeOpacity={0.9}
 						onPress={() => handleNavigation(post.wordpressId)}

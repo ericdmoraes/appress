@@ -7,6 +7,7 @@ export default class Post extends Model {
 	@field('wordpress_id') wordpressId!: number;
 	@text('title') title!: string;
 	@text('pictureUrl') pictureUrl!: string;
+	@text('picture_caption') pictureCaption!: string;
 	@text('description') description!: string;
 	@text('htmlDescription') htmlDescription!: string;
 	@field('category_id') categoryId!: number;

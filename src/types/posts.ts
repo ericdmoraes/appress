@@ -115,4 +115,5 @@ export type formatedPost = {
 	authorId: number;
 	publicatedAt: string;
 	updatedPostAt: string;
+	pictureCaption: string;
 };
